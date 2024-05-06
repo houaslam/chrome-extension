@@ -15,8 +15,7 @@ function removeUrl(myurl){
     let index = myLeads.indexOf(myurl)
     if (index != -1)
         myLeads.splice(index, 1)
-    else
-        console.log("BRUH")
+    localStorage.setItem("myLeads", JSON.stringify(myLeads) )
     render(myLeads)
 }
 
