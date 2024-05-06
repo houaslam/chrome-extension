@@ -12,10 +12,11 @@ if (leadsFromLocalStorage) {
 }
 
 function removeUrl(myurl){
-    for (let i = 0; i < myLeads.length; i++) {
-        if(myLeadsp[i] == myurl)
-            myLeads[i] = ""
-    }
+    let index = myLeads.indexOf(myurl)
+    if (index != -1)
+        myLeads.splice(index, 1)
+    else
+        console.log("BRUH")
     render(myLeads)
 }
 
@@ -32,7 +33,7 @@ function render(leads) {
     for (let i = 0; i < leads.length; i++) {
         listItems += `
         <li>
-            <i onclick="removeUrl(${leads[i]})" class="fa-solid fa-trash"></i>
+            <i onclick="removeUrl('${leads[i]}')" class="fa-solid fa-trash"></i>
                 <a target='_blank' href='${leads[i]}'>
                     ${leads[i]}
                 </a>
@@ -43,7 +44,6 @@ function render(leads) {
 }
 
 deleteBtn.addEventListener("dblclick", function() {
-    console.log("clocked")
     localStorage.clear()
     myLeads = []
     render(myLeads)
